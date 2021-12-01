@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:muzik/models/category.dart';
+import 'package:muzik/services/category_operations.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -8,6 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   createAppBar(String message) {
     return AppBar(
       backgroundColor: Colors.transparent,
@@ -20,6 +23,40 @@ class _HomeState extends State<Home> {
     );
   }
 
+  createCategory(Category category){
+    return Container(
+      color:Colors.blueGrey,
+      child: Row(
+        children: [
+          Image.network(category.imageURL, fit:BoxFit.cover),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+              child: Text(category.name, style: const TextStyle(color: Colors.white)))
+        ],
+      )
+    );
+  }
+
+  createListOfCategories(){
+    List<Category> categoryList = CategoryOperation.getCategory();
+    Iterable<Widget> categories = categoryList.map((Category category)=>createCategory);
+    return categories;
+  }
+
+  createGrid(){
+    return Container(
+      padding: EdgeInsets.all(5),
+      height : 400,
+        child: GridView.count(
+          childAspectRatio: 5/2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          crossAxisCount: 2,
+          children: createListOfCategories(),
+        )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,6 +64,8 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             createAppBar("Good Morning"),
+            const SizedBox(height: 5),
+            createGrid(),
           ],
         ),
         decoration: BoxDecoration(
