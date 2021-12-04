@@ -39,14 +39,14 @@ class _HomeState extends State<Home> {
 
   createListOfCategories(){
     List<Category> categoryList = CategoryOperation.getCategory();
-    Iterable<Widget> categories = categoryList.map((Category category)=>createCategory);
+    List<Widget>categories = categoryList.map((Category category)=>createCategory).cast<Widget>().toList();
     return categories;
   }
 
   createGrid(){
     return Container(
-      padding: EdgeInsets.all(5),
       height : 400,
+      padding: const EdgeInsets.all(5),
         child: GridView.count(
           childAspectRatio: 5/2,
           crossAxisSpacing: 10,
@@ -55,6 +55,10 @@ class _HomeState extends State<Home> {
           children: createListOfCategories(),
         )
     );
+  }
+
+  createMusic(String label){
+
   }
 
   @override
