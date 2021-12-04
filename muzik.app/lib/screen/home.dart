@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:muzik/models/category.dart';
 import 'package:muzik/services/category_operations.dart';
+import 'package:muzik/services/music_operations.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _HomeState extends State<Home> {
 
   createListOfCategories(){
     List<Category> categoryList = CategoryOperation.getCategory();
-    List<Widget>categories = categoryList.map((Category category)=>createCategory).cast<Widget>().toList();
+    List<Widget> categories = categoryList.map((Category category)=>createCategory).cast<Widget>().toList();
     return categories;
   }
 
@@ -58,7 +59,9 @@ class _HomeState extends State<Home> {
   }
 
   createMusic(String label){
-
+    List<Music> musicList = MusicOperations.getMusic();
+    ListView.builder(itemBuilder: ,
+    )
   }
 
   @override
