@@ -38,12 +38,10 @@ class _HomeState extends State<Home> {
         ));
   }
 
-  createListOfCategories() {
+  List<Widget> createListOfCategories() {
     List<Category> categoryList = CategoryOperation.getCategory();
     List<Widget> categories = categoryList
-        .map<Widget>((Category category) => createCategory)
-        .cast<Widget>()
-        .toList();
+        .map<Widget>((Category category) => createCategory(category)).toList();
     return categories;
   }
 
@@ -56,20 +54,24 @@ class _HomeState extends State<Home> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 2,
-          children: <Widget>[createListOfCategories()],
-        ));
+          children: createListOfCategories(),
+        )
+    );
   }
 
   createMusic(Music music) {
-    return Column(
-      children: [
-        SizedBox(
-            height: 200,
-            width: 200,
-            child: Image.network(music.image, fit: BoxFit.cover)),
-        Text(music.name),
-        Text(music.desc),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        children: [
+          SizedBox(
+              height: 200,
+              width: 200,
+              child: Image.network(music.image, fit: BoxFit.cover)),
+          Text(music.name),
+          Text(music.desc),
+        ],
+      ),
     );
   }
 
@@ -83,7 +85,8 @@ class _HomeState extends State<Home> {
             return createMusic(musicList[index]);
           },
           itemCount: musicList.length,
-        ));
+        )
+    );
   }
 
   @override

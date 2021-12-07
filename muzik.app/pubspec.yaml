@@ -42,7 +42,7 @@ flutter_icons:
 
 flutter_native_splash:
   color: "#ffffff"
-  image: assets/icon.png
+  image: assets/logo.new.png
 
 flutter:
   assets:
