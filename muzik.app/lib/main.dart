@@ -11,7 +11,7 @@ void main() {
       backgroundColor: Colors.grey,
       splash: const CircleAvatar(
         backgroundColor: Colors.transparent,
-        foregroundImage: AssetImage('assets/splash.png'),
+        foregroundImage: AssetImage('assets/icon.png'),
       ),
       nextScreen: const MyApp(),
       splashTransition: SplashTransition.scaleTransition,

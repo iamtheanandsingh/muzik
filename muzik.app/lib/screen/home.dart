@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:muzik/models/category.dart';
 import 'package:muzik/services/category_operations.dart';
 import 'package:muzik/services/music_operations.dart';
+import 'package:muzik/models/music.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,7 +12,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   createAppBar(String message) {
     return AppBar(
       backgroundColor: Colors.transparent,
@@ -24,44 +24,66 @@ class _HomeState extends State<Home> {
     );
   }
 
-  createCategory(Category category){
+  createCategory(Category category) {
     return Container(
-      color:Colors.blueGrey,
-      child: Row(
-        children: [
-          Image.network(category.imageURL, fit:BoxFit.cover),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-              child: Text(category.name, style: const TextStyle(color: Colors.white)))
-        ],
-      )
-    );
+        color: Colors.blueGrey,
+        child: Row(
+          children: [
+            Image.network(category.imageURL, fit: BoxFit.cover),
+            Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(category.name,
+                    style: const TextStyle(color: Colors.white)))
+          ],
+        ));
   }
 
-  createListOfCategories(){
+  createListOfCategories() {
     List<Category> categoryList = CategoryOperation.getCategory();
-    List<Widget> categories = categoryList.map((Category category)=>createCategory).cast<Widget>().toList();
+    List<Widget> categories = categoryList
+        .map<Widget>((Category category) => createCategory)
+        .cast<Widget>()
+        .toList();
     return categories;
   }
 
-  createGrid(){
+  createGrid() {
     return Container(
-      height : 400,
-      padding: const EdgeInsets.all(5),
+        height: 50,
+        padding: const EdgeInsets.all(5),
         child: GridView.count(
-          childAspectRatio: 5/2,
+          childAspectRatio: 5 / 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 2,
-          children: createListOfCategories(),
-        )
+          children: <Widget>[createListOfCategories()],
+        ));
+  }
+
+  createMusic(Music music) {
+    return Column(
+      children: [
+        SizedBox(
+            height: 200,
+            width: 200,
+            child: Image.network(music.image, fit: BoxFit.cover)),
+        Text(music.name),
+        Text(music.desc),
+      ],
     );
   }
 
-  createMusic(String label){
+  createMusicList(String label) {
     List<Music> musicList = MusicOperations.getMusic();
-    ListView.builder(itemBuilder: ,
-    )
+    return SizedBox(
+        height: 400,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (ctx, index) {
+            return createMusic(musicList[index]);
+          },
+          itemCount: musicList.length,
+        ));
   }
 
   @override
@@ -73,6 +95,7 @@ class _HomeState extends State<Home> {
             createAppBar("Good Morning"),
             const SizedBox(height: 5),
             createGrid(),
+            createMusicList('Music For You')
           ],
         ),
         decoration: BoxDecoration(

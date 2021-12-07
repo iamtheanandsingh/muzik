@@ -17,9 +17,9 @@ class _MyAppState extends State<MyApp> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   final screens = [
-    Home(),
-    Search(),
-    Library(),
+    const Home(),
+    const Search(),
+    const Library(),
   ];
 
   @override
