@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
           Icon(Icons.search, size: 30, color: Colors.black),
           Icon(Icons.library_add_outlined, size: 30, color: Colors.black),
         ],
-        color: Colors.grey,
+        color: Colors.white,
         backgroundColor: Colors.transparent,
         animationCurve: Curves.easeInOutCubic,
         animationDuration: const Duration(milliseconds: 200),

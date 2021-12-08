@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
 
   createCategory(Category category) {
     return Container(
-        color: Colors.blueGrey,
+        color: Colors.blueGrey.shade400,
         child: Row(
           children: [
             Image.network(category.imageURL, fit: BoxFit.cover),
@@ -35,22 +35,24 @@ class _HomeState extends State<Home> {
                 child: Text(category.name,
                     style: const TextStyle(color: Colors.white)))
           ],
-        ));
+        ),
+    );
   }
 
   List<Widget> createListOfCategories() {
     List<Category> categoryList = CategoryOperation.getCategory();
     List<Widget> categories = categoryList
-        .map<Widget>((Category category) => createCategory(category)).toList();
+        .map<Widget>((Category category) => createCategory(category))
+        .toList();
     return categories;
   }
 
   createGrid() {
     return Container(
-        height: 50,
-        padding: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(10),
+        height: 210,
         child: GridView.count(
-          childAspectRatio: 5 / 2,
+          childAspectRatio: 7 / 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 2,
@@ -61,15 +63,15 @@ class _HomeState extends State<Home> {
 
   createMusic(Music music) {
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.fromLTRB(0, 12, 12, 12),
       child: Column(
         children: [
           SizedBox(
               height: 200,
               width: 200,
               child: Image.network(music.image, fit: BoxFit.cover)),
-          Text(music.name),
-          Text(music.desc),
+          Text(music.name, style: const TextStyle(color: Colors.white)),
+          Text(music.desc, style: const TextStyle(color: Colors.white)),
         ],
       ),
     );
@@ -77,40 +79,55 @@ class _HomeState extends State<Home> {
 
   createMusicList(String label) {
     List<Music> musicList = MusicOperations.getMusic();
-    return SizedBox(
-        height: 400,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (ctx, index) {
-            return createMusic(musicList[index]);
-          },
-          itemCount: musicList.length,
-        )
+    return Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+              height: 270,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (ctx, index) {
+                  return createMusic(musicList[index]);
+                },
+                itemCount: musicList.length,
+              )),
+        ],
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        child: Column(
-          children: [
-            createAppBar("Good Morning"),
-            const SizedBox(height: 5),
-            createGrid(),
-            createMusicList('Music For You')
-          ],
-        ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.blueGrey.shade100,
-              Colors.black,
-              Colors.black,
-              Colors.black
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: Container(
+          child: Column(
+            children: [
+              createAppBar("Welcome"),
+              const SizedBox(height: 5),
+              createGrid(),
+              createMusicList('Music For You'),
+              createMusicList('Popular Artists')
             ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+          ),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blueGrey.shade100,
+                Colors.black,
+                Colors.black,
+                Colors.black
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
         ),
       ),
