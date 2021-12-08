@@ -4,14 +4,11 @@ import 'package:muzik/services/category_operations.dart';
 import 'package:muzik/services/music_operations.dart';
 import 'package:muzik/models/music.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Home extends StatelessWidget {
 
-  @override
-  _HomeState createState() => _HomeState();
-}
+  final Function _miniPlayer;
+  const Home(this._miniPlayer);
 
-class _HomeState extends State<Home> {
   createAppBar(String message) {
     return AppBar(
       backgroundColor: Colors.transparent,
@@ -26,16 +23,16 @@ class _HomeState extends State<Home> {
 
   createCategory(Category category) {
     return Container(
-        color: Colors.blueGrey.shade400,
-        child: Row(
-          children: [
-            Image.network(category.imageURL, fit: BoxFit.cover),
-            Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(category.name,
-                    style: const TextStyle(color: Colors.white)))
-          ],
-        ),
+      color: Colors.blueGrey.shade400,
+      child: Row(
+        children: [
+          Image.network(category.imageURL, fit: BoxFit.cover),
+          Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(category.name,
+                  style: const TextStyle(color: Colors.white)))
+        ],
+      ),
     );
   }
 
@@ -57,8 +54,7 @@ class _HomeState extends State<Home> {
           mainAxisSpacing: 10,
           crossAxisCount: 2,
           children: createListOfCategories(),
-        )
-    );
+        ));
   }
 
   createMusic(Music music) {
@@ -69,7 +65,11 @@ class _HomeState extends State<Home> {
           SizedBox(
               height: 200,
               width: 200,
-              child: Image.network(music.image, fit: BoxFit.cover)),
+              child: InkWell(
+                  onTap: () {
+                    _miniPlayer(music, stop:true);
+                  },
+                  child: Image.network(music.image, fit: BoxFit.cover))),
           Text(music.name, style: const TextStyle(color: Colors.white)),
           Text(music.desc, style: const TextStyle(color: Colors.white)),
         ],
