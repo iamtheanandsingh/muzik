@@ -4,13 +4,37 @@
             "outputFile": "C:\\Users\\iamth\\Favorites\\Projects\\muzik\\muzik.app\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ka\\values-ka.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\iamth\\.gradle\\caches\\transforms-2\\files-2.1\\3db6d125c6afcb0a6fe221b28e1b5f57\\core-1.6.0\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\iamth\\.gradle\\caches\\transforms-2\\files-2.1\\b2f71e94949feb6035b07ea43bdfd858\\jetified-play-services-basement-17.0.0\\res\\values-ka\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "201",
+                        "endOffsets": "448"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "105",
+                        "endColumns": "201",
+                        "endOffsets": "302"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\iamth\\.gradle\\caches\\transforms-2\\files-2.1\\0cddc18714a4c151874b017a9abca010\\core-1.6.0\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
                         "endColumns": "100",
                         "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "307",
+                        "endColumns": "100",
+                        "endOffsets": "403"
                     }
                 }
             ]
