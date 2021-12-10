@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
     screens = [
       Home(miniPlayer),
       const Search(),
-      const Library()
+      Library(),
     ];
   }
 

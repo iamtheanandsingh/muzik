@@ -1,3 +1,9 @@
 body {
-  background-image: url('img_girl.jpg');
+  background-image: url('wall.jpg');
+  background-size: cover;
+  align-items: center;
+}
+
+div{
+  align-items: center;
 }

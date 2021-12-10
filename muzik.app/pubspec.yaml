@@ -27,6 +27,9 @@ dependencies:
   curved_navigation_bar: ^1.0.1
   flutter_launcher_icons:
   audioplayers: ^0.20.1
+  firebase_storage:
+  firebase_core:
+  path_provider:
 
 dev_dependencies:
   flutter_test:
